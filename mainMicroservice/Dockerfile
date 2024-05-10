@@ -1,7 +1,7 @@
 FROM openjdk:17
 LABEL authors="Bobrus Alexander"
 
-COPY . /java
+COPY target/*.jar /java/app.jar
 WORKDIR /java
 
-ENTRYPOINT ["java", "-jar", "target/mainMicroservice-1.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
