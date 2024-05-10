@@ -15,9 +15,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Builder
 public class Jwt {
+
     @Id
     @GeneratedValue
     private Long id;
+
     @Column(unique = true)
     private String token;
+
 }

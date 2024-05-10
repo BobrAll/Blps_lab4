@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor
 @Tag(name = "Subscription")
 public class SubscriptionController {
+
     private final FlatService flatService;
     private final UserService userService;
 
@@ -36,5 +37,6 @@ public class SubscriptionController {
         } else
             throw new UserNotSubscribedException();
     }
+
 }
 

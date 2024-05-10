@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @Tag(name = "Auth")
 @RequiredArgsConstructor
 public class AuthenticationController {
+
     private final AuthenticationService authenticationService;
     private final JwtService jwtService;
 
@@ -33,4 +34,5 @@ public class AuthenticationController {
 
         return ResponseEntity.ok("Token has been removed successfully");
     }
+
 }

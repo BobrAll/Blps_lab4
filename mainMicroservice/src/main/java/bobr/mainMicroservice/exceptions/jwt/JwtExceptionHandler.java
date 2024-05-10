@@ -15,4 +15,5 @@ public class JwtExceptionHandler {
 
         return new ResponseEntity<>(new ExceptionBody(e.getMessage(), status), status);
     }
+
 }

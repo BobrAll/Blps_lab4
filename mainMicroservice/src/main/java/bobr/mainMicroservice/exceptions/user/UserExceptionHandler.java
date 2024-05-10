@@ -20,4 +20,5 @@ public class UserExceptionHandler {
 
         return new ResponseEntity<>(new ExceptionBody(e.getMessage(), status), status);
     }
+
 }

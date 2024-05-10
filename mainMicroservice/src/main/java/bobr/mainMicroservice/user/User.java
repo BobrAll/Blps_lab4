@@ -21,19 +21,24 @@ import java.util.Collection;
 @Table(name = "_user")
 @DynamicInsert
 public class User implements UserDetails {
+
     @Id
     @GeneratedValue
     private Integer id;
+
     @Column(unique = true)
     private String login;
     private String firstname;
     private String lastname;
+
     @Column(unique = true)
     private String email;
     private String password;
+
     @Enumerated(EnumType.STRING)
     private Role role;
     private Boolean enabled;
+
     @ColumnDefault("0")
     private Double usdBalance;
     private Calendar subscriptionExpiration;
@@ -80,4 +85,5 @@ public class User implements UserDetails {
     public void enable() {
         enabled = true;
     }
+
 }

@@ -14,6 +14,7 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor
 public class Base64ImageService {
+
     private final ImageRepository imageRepository;
 
     public static byte[] toByteImage(Base64Image img) {
@@ -34,4 +35,5 @@ public class Base64ImageService {
     public List<Base64Image> findAllByFlatId(Integer flatId) {
         return imageRepository.findAllByFlatId(flatId);
     }
+
 }

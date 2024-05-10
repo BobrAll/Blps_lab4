@@ -13,6 +13,7 @@ import java.util.Base64;
 @Service
 @RequiredArgsConstructor
 public class Base64ImageService {
+
     private final ImageRepository imageRepository;
     private final FlatRepository flatRepository;
 

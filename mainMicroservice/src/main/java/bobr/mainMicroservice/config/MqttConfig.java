@@ -13,6 +13,7 @@ import org.springframework.messaging.MessageHandler;
 
 @Configuration
 public class MqttConfig {
+
     @Value("${RABBITMQ_HOST}")
     private String rabbitmqHost;
 
@@ -46,4 +47,5 @@ public class MqttConfig {
     public interface MQTTGateway {
         void sendToMqtt(String data);
     }
+
 }

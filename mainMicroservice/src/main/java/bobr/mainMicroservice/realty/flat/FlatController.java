@@ -18,6 +18,7 @@ import java.util.List;
 @Tag(name = "Flat")
 @RequestMapping("/api/v1/flats")
 public class FlatController {
+
     private static final int GAP_FROM_HUMAN_READABLE_NUM_TO_IDX = 1;
 
     private final UserService userService;
@@ -97,4 +98,5 @@ public class FlatController {
                     .body(null);
         }
     }
+
 }

@@ -20,6 +20,7 @@ import java.util.function.Function;
 @Service
 @RequiredArgsConstructor
 public class JwtService {
+
     @Value("${JWT_SECRET_KEY}")
     private String SECRET_KEY;
     private final JwtRepository jwtRepository;
@@ -97,4 +98,5 @@ public class JwtService {
         byte[] keyBytes = Decoders.BASE64.decode(SECRET_KEY);
         return Keys.hmacShaKeyFor(keyBytes);
     }
+
 }

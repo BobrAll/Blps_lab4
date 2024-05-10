@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface FlatRepository extends JpaRepository<Flat, Integer> {
+
     @Query("SELECT f FROM Flat f " +
             "WHERE (:floor IS NULL OR f.floor = :floor) " +
             "AND (:rooms IS NULL OR f.rooms IN :rooms) " +
@@ -35,4 +36,5 @@ public interface FlatRepository extends JpaRepository<Flat, Integer> {
 
     @Query("SELECT f.ownerId FROM Flat f WHERE f.id = :flatId")
     Integer findOwnerIdByFlatId(Integer flatId);
+
 }

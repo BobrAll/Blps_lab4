@@ -10,10 +10,10 @@ services:
     ports:
       - "5432:5432"
 
-  backend:
-    image: backend
+  mainMicroservice:
+    image: main-microservice
     ports:
-      - "8080:21200"
+      - "8082:8082"
 
   mediaMicroservice:
     image: media-microservice

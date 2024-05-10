@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 @RequiredArgsConstructor
 public class SubscriptionAutoUpdater {
+
     private final UserService userService;
 
     @Scheduled(cron = "${SUBSCRIPTION_RENEW_PERIOD}")
@@ -16,4 +17,5 @@ public class SubscriptionAutoUpdater {
                 .findUsersWithLessThanOneDaySubscription()
                 .forEach(userService::buySubscription);
     }
+
 }

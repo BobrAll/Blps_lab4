@@ -8,6 +8,7 @@ import java.time.ZonedDateTime;
 
 @Data
 public class ExceptionBody {
+
         private String message;
         private HttpStatus httpStatus;
         private ZonedDateTime timestamp;
@@ -18,4 +19,5 @@ public class ExceptionBody {
 
                 timestamp = ZonedDateTime.now(ZoneId.of("Z"));
         }
+
 }

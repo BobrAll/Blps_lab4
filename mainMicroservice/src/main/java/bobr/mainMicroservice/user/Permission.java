@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum Permission {
+
     FLAT_ADD("flat.add"),
     FLAT_DELETE("flat.delete"),
     FLAT_BOOST("flat.boost"),
@@ -16,4 +17,5 @@ public enum Permission {
 
     @Getter
     private final String permission;
+
 }

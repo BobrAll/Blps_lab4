@@ -14,6 +14,7 @@ import java.util.*;
 @Service
 @RequiredArgsConstructor
 public class UserService {
+
     @Value("${SUBSCRIPTION_PRICE}")
     private Double subPrice;
     private final UserRepository repository;
@@ -82,4 +83,5 @@ public class UserService {
 
         return repository.findUsersBySubscriptionExpirationBefore(calendar);
     }
+
 }

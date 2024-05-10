@@ -12,10 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Base64Image {
+
     @Id
     @GeneratedValue
     private Integer id;
-
     private Integer flatId;
 
     @Column(columnDefinition = "TEXT")
@@ -25,4 +25,5 @@ public class Base64Image {
         this.base64Image = base64Image;
         this.flatId = flatId;
     }
+
 }

@@ -15,4 +15,5 @@ public class RegisterExceptionHandler {
 
         return new ResponseEntity<>(new ExceptionBody(e.getMessage(), status), status);
     }
+
 }

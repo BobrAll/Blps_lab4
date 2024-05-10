@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DownloadImageRequest {
+
     private String url;
     private Integer flatId;
+
 }

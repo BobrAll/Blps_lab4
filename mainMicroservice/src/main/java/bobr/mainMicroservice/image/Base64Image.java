@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Base64Image {
+
     @Id
     @GeneratedValue
     private Integer id;
@@ -23,4 +24,5 @@ public class Base64Image {
 
     @Column(columnDefinition = "TEXT")
     private String base64Image;
+
 }

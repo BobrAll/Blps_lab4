@@ -1,14 +1,14 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/studs
-    username: s339795
-    password: FH91Ze1WDQJk6Oed
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
+    url: ${DB_URL:jdbc:postgresql://pg:5432/studs}
+    username: ${DB_USERNAME:s339795}
+    password: ${DB_PASSWORD:FH91Ze1WDQJk6Oed}
 
   jpa:
     hibernate:
       ddl-auto: create-drop
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
@@ -20,6 +20,6 @@ spring:
       mode: always
 
 server:
-  port: 8081
+  port: ${MEDIA_MICROSERVICE_PORT:8081}
 
 RABBITMQ_HOST: "tcp://5.23.55.30:1883"

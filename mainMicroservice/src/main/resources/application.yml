@@ -1,14 +1,14 @@
 spring:
   datasource:
-    url: jdbc:postgresql://pg:5432/studs
-    username: s339795
-    password: FH91Ze1WDQJk6Oed
-    driver-class-name: org.postgresql.Driver
+    driver-class-name: ${DB_DRIVER:org.postgresql.Driver}
+    url: ${DB_URL:jdbc:postgresql://pg:5432/studs}
+    username: ${DB_USERNAME:s339795}
+    password: ${DB_PASSWORD:FH91Ze1WDQJk6Oed}
 
   jpa:
     hibernate:
       ddl-auto: create-drop
-    show-sql: false
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
@@ -20,9 +20,10 @@ spring:
       mode: always
 
 server:
-  port: 21200
+  port: ${MAIN_MICROSERVICE_PORT:8082}
 
-JWT_SECRET_KEY: "6A576E5A7234753778214125442A472D4B6150645267556B703273357638792F"
-SUBSCRIPTION_PRICE: 200
-RABBITMQ_HOST: "tcp://5.23.55.30:1883"
+JWT_SECRET_KEY: ${JWT_SECRET:6A576E5A7234753778214125442A472D4B6150645267556B703273357638792F}
+RABBITMQ_HOST: ${RABBIT_HOST:tcp://5.23.55.30:1883}
+
+SUBSCRIPTION_PRICE: ${SUB_PRICE:200}
 SUBSCRIPTION_RENEW_PERIOD: "0 0 0 * * *" # Every day at 00:00

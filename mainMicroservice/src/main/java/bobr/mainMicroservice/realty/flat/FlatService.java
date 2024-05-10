@@ -16,6 +16,7 @@ import java.util.List;
 @Data
 @RequiredArgsConstructor
 public class FlatService {
+
     private final MqttConfig.MQTTGateway mqttGateway;
     private final Base64ImageService imageService;
     private final FlatRepository flatRepository;
@@ -101,4 +102,5 @@ public class FlatService {
         }
         return flat;
     }
+
 }

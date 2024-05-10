@@ -20,6 +20,7 @@ import org.springframework.messaging.MessageChannel;
 @Configuration
 @RequiredArgsConstructor
 public class MqttConfig {
+
     private final Base64ImageService imageService;
 
     @Value("${RABBITMQ_HOST}")
@@ -83,4 +84,5 @@ public class MqttConfig {
 
         return adapter;
     }
+
 }

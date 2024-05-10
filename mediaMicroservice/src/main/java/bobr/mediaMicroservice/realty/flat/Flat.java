@@ -15,15 +15,21 @@ import lombok.experimental.SuperBuilder;
 @NoArgsConstructor
 @Entity
 public class Flat extends Realty {
+
     @Column(nullable = false)
     private Integer ownerId;
+
     private Boolean isBoosted;
     private Boolean haveBalcony;
     private Boolean isApartments;
+
     private Double kitchenArea;
     private Double livingArea;
+
     @Column(nullable = false)
     private Integer rooms;
+
     @Column(nullable = false)
     private Integer floor;
+
 }

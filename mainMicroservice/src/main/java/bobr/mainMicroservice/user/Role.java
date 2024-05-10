@@ -12,6 +12,7 @@ import static bobr.mainMicroservice.user.Permission.*;
 
 @RequiredArgsConstructor
 public enum Role {
+
     USER(Set.of(
             FLAT_ADD
     )),
@@ -39,4 +40,5 @@ public enum Role {
                 .map(permission -> new SimpleGrantedAuthority(permission.getPermission()))
                 .collect(Collectors.toList());
     }
+
 }

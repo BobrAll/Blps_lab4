@@ -12,6 +12,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @SpringBootApplication
 @EnableScheduling
 public class MainMicroserviceApplication {
+
     public static void main(String[] args) {
         var context = SpringApplication.run(MainMicroserviceApplication.class, args);
 
@@ -26,4 +27,5 @@ public class MainMicroserviceApplication {
                 .build()
         );
     }
+
 }
