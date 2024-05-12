@@ -19,10 +19,10 @@ public class SubscriptionAutoUpdater {
 
     @PostConstruct
     public void addCamundaTaskHandler() {
-        externalTaskClientService.addHandlerToTopic("sub-renewing", this::handleExternalTask);
+        externalTaskClientService.addHandlerToTopic("sub-renewing", this::renew);
     }
 
-    private void handleExternalTask(ExternalTask externalTask, ExternalTaskService externalTaskService) {
+    private void renew(ExternalTask externalTask, ExternalTaskService externalTaskService) {
         userService
                 .findUsersWithLessThanOneDaySubscription()
                 .forEach(userService::buySubscription);
