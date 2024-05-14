@@ -86,4 +86,8 @@ public class User implements UserDetails {
         enabled = true;
     }
 
+    public boolean haveSubscription() {
+        return getAuthorities().containsAll(Role.SUPERUSER.getAuthorities());
+    }
+
 }

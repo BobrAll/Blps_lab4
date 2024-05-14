@@ -58,10 +58,7 @@ public class UserService {
 
     @Transactional
     public void buySubscription(User user) {
-        if (user
-                .getAuthorities()
-                .containsAll(Role.SUPERUSER.getAuthorities())
-        ) {
+        if (user.haveSubscription()) {
             throw new AlreadyHaveSuperuserPermissionsException();
         } else {
             if (user.getUsdBalance() < subPrice)

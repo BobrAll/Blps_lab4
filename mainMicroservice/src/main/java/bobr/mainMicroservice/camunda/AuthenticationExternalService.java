@@ -4,6 +4,8 @@ import bobr.mainMicroservice.security.auth.AuthenticationRequest;
 import bobr.mainMicroservice.security.auth.AuthenticationService;
 import bobr.mainMicroservice.security.auth.RegisterRequest;
 import bobr.mainMicroservice.security.jwt.JwtService;
+import bobr.mainMicroservice.user.User;
+import bobr.mainMicroservice.user.UserService;
 import jakarta.annotation.PostConstruct;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -20,6 +22,7 @@ import java.util.Map;
 public class AuthenticationExternalService {
 
     private final JwtService jwtService;
+    private final UserService userService;
     private final AuthenticationService authService;
     private final ExternalTaskClientService externalTaskClientService;
 
@@ -28,12 +31,12 @@ public class AuthenticationExternalService {
 
     @PostConstruct
     public void addCamundaTaskHandlers() {
-        externalTaskClientService.addHandlerToTopic("register-user", this::registerHandler);
-        externalTaskClientService.addHandlerToTopic("login-user", this::loginHandler);
-        externalTaskClientService.addHandlerToTopic("find-user", this::findUser);
+        externalTaskClientService.addHandlerToTopic("user-register", this::register);
+        externalTaskClientService.addHandlerToTopic("user-login", this::login);
+        externalTaskClientService.addHandlerToTopic("user-auth", this::authUserAutomatically);
     }
 
-    private void findUser(ExternalTask externalTask, ExternalTaskService externalTaskService) {
+    private void authUserAutomatically(ExternalTask externalTask, ExternalTaskService externalTaskService) {
         String camundaLogin = externalTask.getVariable("currentUser").toString();
 
         String jwt = jwts.get(camundaLogin);
@@ -42,7 +45,7 @@ public class AuthenticationExternalService {
         externalTaskService.complete(externalTask, Collections.singletonMap("jwt", jwt));
     }
 
-    private void registerHandler(ExternalTask externalTask, ExternalTaskService externalTaskService) {
+    private void register(ExternalTask externalTask, ExternalTaskService externalTaskService) {
         Map<String, Object> vars = externalTask.getAllVariables();
 
         RegisterRequest request = RegisterRequest.builder()
@@ -64,7 +67,7 @@ public class AuthenticationExternalService {
 
     }
 
-    private void loginHandler(ExternalTask externalTask, ExternalTaskService externalTaskService) {
+    private void login(ExternalTask externalTask, ExternalTaskService externalTaskService) {
         Map<String, Object> vars = externalTask.getAllVariables();
 
         AuthenticationRequest request = AuthenticationRequest.builder()
@@ -78,6 +81,13 @@ public class AuthenticationExternalService {
         } catch (Exception e) {
             externalTaskService.handleBpmnError(externalTask, "loginError");
         }
+    }
+
+    public User getTaskUser(ExternalTask externalTask) {
+        String jwt = jwts.get(externalTask.getVariable("currentUser").toString());
+        Integer userId = Integer.valueOf(jwtService.extractId(jwt));
+
+        return userService.findById(userId).get();
     }
 
 }

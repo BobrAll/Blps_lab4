@@ -19,8 +19,12 @@ public class CamundaMapper {
         return Boolean.valueOf(readString(map, var));
     }
 
-    public Integer readInt(Map<String, Object> map, String var) {
+    public Integer readLongAsInt(Map<String, Object> map, String var) {
         return Math.toIntExact((Long) map.get(var));
+    }
+
+    public Integer readInt(Map<String, Object> map, String var) {
+        return (Integer) map.get(var);
     }
 
 }

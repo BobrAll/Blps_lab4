@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:camunda="http://camunda.org/schema/1.0/bpmn" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:modeler="http://camunda.org/schema/modeler/1.0" id="Definitions_1ux6u2u" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="5.22.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.21.0">
+  <bpmn:process id="subscribtion-updating" name="Subscribtion auto-updating" isExecutable="true" camunda:historyTimeToLive="P30D">
+    <bpmn:startEvent id="timer" name="Every day at 00:00">
+      <bpmn:outgoing>Flow_0d0wwns</bpmn:outgoing>
+      <bpmn:timerEventDefinition id="TimerEventDefinition_1m89kh5">
+        <bpmn:timeCycle xsi:type="bpmn:tFormalExpression">45 15 * * * ?</bpmn:timeCycle>
+      </bpmn:timerEventDefinition>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_0d0wwns" sourceRef="timer" targetRef="subscription-renewing" />
+    <bpmn:serviceTask id="subscription-renewing" name="Renew a subscription to users who have not cancelled it" camunda:type="external" camunda:topic="sub-renew">
+      <bpmn:incoming>Flow_0d0wwns</bpmn:incoming>
+      <bpmn:outgoing>Flow_1nmqkl5</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:endEvent id="Event_1oth8uy">
+      <bpmn:incoming>Flow_1nmqkl5</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:sequenceFlow id="Flow_1nmqkl5" sourceRef="subscription-renewing" targetRef="Event_1oth8uy" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="subscribtion-updating">
+      <bpmndi:BPMNShape id="Event_0q4cjar_di" bpmnElement="timer">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="166" y="142" width="62" height="27" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0l46raw_di" bpmnElement="subscription-renewing">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+        <bpmndi:BPMNLabel />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_1oth8uy_di" bpmnElement="Event_1oth8uy">
+        <dc:Bounds x="432" y="99" width="36" height="36" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNEdge id="Flow_0d0wwns_di" bpmnElement="Flow_0d0wwns">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1nmqkl5_di" bpmnElement="Flow_1nmqkl5">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="432" y="117" />
+      </bpmndi:BPMNEdge>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
