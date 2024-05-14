@@ -1,6 +1,5 @@
-package bobr.mainMicroservice.subscription;
+package bobr.mainMicroservice.camunda;
 
-import bobr.mainMicroservice.camunda.ExternalTaskClientService;
 import bobr.mainMicroservice.user.UserService;
 import jakarta.annotation.PostConstruct;
 import lombok.RequiredArgsConstructor;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Slf4j
 @Component
 @RequiredArgsConstructor
-public class SubscriptionAutoUpdater {
+public class SubscriptionExternalAutoUpdater {
 
     private final UserService userService;
     private final ExternalTaskClientService externalTaskClientService;

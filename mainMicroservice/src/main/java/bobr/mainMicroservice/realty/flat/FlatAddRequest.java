@@ -1,10 +1,12 @@
 package bobr.mainMicroservice.realty.flat;
 
+import lombok.Builder;
 import lombok.Data;
 
 import java.util.Set;
 
 @Data
+@Builder
 public class FlatAddRequest {
 
     private Double totalArea;
